@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=GIS, initial-scale=1.0">
+    <title>Document</title>
+    <!-- leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="map">
+
+    </div>
+</body>
+
+<!-- leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>9.0820° N, 8.6753° E
+<script>
+    // Map initialization
+    var map = L.map('map').setView([9.0820, 8.6753], 6);
+
+    // OSM Layer
+    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+    osm.addTo(map);
+
+    // Chyco Theme
+
+    var chyco = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
+        maxZoom: 20,
+        attribution: '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+    // chyco.addTo(map);
+
+    // Water Color
+
+    var watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        subdomains: 'abcd',
+        minZoom: 1,
+        maxZoom: 16,
+        ext: 'jpg'
+    });
+    // watercolor.addTo(map)
+
+    // dark map 
+    var dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+    });
+    // dark.addTo(map)
+
+    // google street 
+    googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    });
+    // googleStreets.addTo(map);
+
+    //google satellite
+    googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    });
+    // googleSat.addTo(map)
+
+    // Marker
+    var myIcon = L.icon({
+        iconUrl: 'img/red_marker.png',
+        iconSize: [40, 30],
+    });
+    var singleMarker = L.marker([9.1099, 7.4042], {icon: myIcon, draggable: true});
+    var popup = singleMarker.bindPopup('This is Gwarinpa ' + singleMarker.getLatLng()).openPopup()
+    popup.addTo(map);
+
+    console.log(singleMarker.toGeoJSON())
+
+    //Layer Controller
+    var baseMaps = {
+        "OSM": osm,
+        "Chyco Map": chyco,
+        "Water color map": watercolor,
+        "Drak": dark,
+        "Google Street Map": googleStreets,
+        "Google Satallite": googleSat
+    };
+
+    var overlayMaps = {
+        "Marker": singleMarker
+    };
+
+    L.control.layers(baseMaps, overlayMaps).addTo(map);
+  
+
+
+</script>
+</html>
