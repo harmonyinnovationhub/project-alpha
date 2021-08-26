@@ -1,0 +1,40 @@
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery AJAX POST Form</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div id="response">
+        <pre></pre>
+    </div>
+
+    <form id="my-form">
+        <input type="text" id="first-name" name="first-name" placeholder="First Name" />
+        <input type="text" id="last-name" name="last-name" placeholder="Last Name" />
+
+        <button type="submit">Submit</button>
+    </form>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        $.ajax({
+            url: 'users.php',
+            dataType: 'json',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify({ "first-name": $('#first-name').val(), "last-name": $('#last-name').val() }),
+            processData: false,
+            success: function (data, textStatus, jQxhr) {
+                $('#response pre').html(JSON.stringify(data));
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    </script>
+</body> -->

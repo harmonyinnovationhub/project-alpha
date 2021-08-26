@@ -1,0 +1,27 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script>
+        var formData = { name: "John", surname: "Doe", age: "31" };
+
+        $.ajax({
+            url: 'test.html',
+            // data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            success: function (data) {
+                alert(data);
+            }
+        });
+    </script>
+</body>
+
+</html>
